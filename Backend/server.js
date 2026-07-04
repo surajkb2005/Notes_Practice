@@ -7,12 +7,13 @@ import connectDB from './config/dbconfig.js';
 dotenv.config();
 connectDB();
 
-const app = express();
+const app = express(); //using express is to make the server handling easier
+app.use(cors()); //using cors is to allow cross-origin requests
 
 const port = process.env.PORT || 5000;
 
 app.use(express.json());
-
+ 
 app.get('/books', async (req, res) => {
     const notes = await Note.find();
 
