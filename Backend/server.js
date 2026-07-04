@@ -14,7 +14,6 @@ app.use(cors()); //using cors is to allow cross-origin requests
 const port = process.env.PORT || 5000;
 
 app.use(express.json());
-
 // using the noteRouter for handling routes related to notes
 app.use('/notes', noteRouter);
 

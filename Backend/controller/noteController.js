@@ -1,4 +1,5 @@
 import Note from '../model/notes.js';
+//no need of importing express here
 
 // Task : do error handling everywhere in the controller functions and send appropriate error messages to the client.
 // eg use try catch blocks
