@@ -3,7 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv'
 import Note from './model/notes.js';
 import connectDB from './config/dbconfig.js';
-import bookRouter from './routes/bookRoutes.js';
+import noteRouter from './routes/noteRoutes.js';
 
 dotenv.config();
 connectDB();
@@ -15,8 +15,8 @@ const port = process.env.PORT || 5000;
 
 app.use(express.json());
 
-// using the bookRouter for handling routes related to books
-app.use('/books', bookRouter);
+// using the noteRouter for handling routes related to notes
+app.use('/notes', noteRouter);
 
 app.get('/', (req, res) => {
     res.send('<h1>Hello World!</h1>');
