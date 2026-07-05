@@ -24,11 +24,13 @@ jobs:
         working-directory: ./Backend
         run: npm ci
 
+      # Note : for python we use flake8, for js we use eslint
       - name: Run ESLint
         working-directory: ./Backend
         run: npm run lint
 
-      - name: Check formatting
+      # Note : for python we use black, for js we use prettier
+      - name: Check formatting   
         working-directory: ./Backend
         run: npm run format:check
 
