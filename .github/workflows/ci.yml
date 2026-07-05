@@ -1,0 +1,30 @@
+
+name: Backend CI
+on: 
+  push: # can be pull, release, tag, issue, etc.
+    branches: ["main"]
+
+jobs:
+  backend: #job name
+    runs-on: ubuntu-latest
+    # till here is the trigger and job name, now we will add steps to run the job
+    steps:
+      # repository can be cloned or not?
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # node can be installed or not?
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22  
+
+      # dependabilities can be correctly installed or not?
+      - name: Install dependencies
+        working-directory: ./Backend
+        run: npm install
+
+      # backend server can be started without crashing or not?
+      - name: Start backend server
+        working-directory: ./Backend
+        run: timeout 25s npm start
