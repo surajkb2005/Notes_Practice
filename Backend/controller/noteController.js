@@ -9,51 +9,57 @@ export async function getNotes(req, res) {
 
     res.status(200).json({
         message: 'Notes fetched successfully',
-        notes: notes
+        notes: notes,
     });
-};
+}
 
 export async function getReadNotes(req, res) {
     const notes = await Note.find({ read: true });
 
     res.status(200).json({
         message: 'Read notes fetched successfully',
-        notes: notes
+        notes: notes,
     });
-};
+}
 
 export async function postNote(req, res) {
     const { title, content, read } = req.body;
 
     const newNote = new Note({
-        title, content, read
+        title,
+        content,
+        read,
     });
 
     await newNote.save();
 
     res.status(200).json({
         message: 'Note created successfully',
-        note: newNote
+        note: newNote,
     });
-};
+}
 
 export async function updateNote(req, res) {
     const id = req.params.id;
     const { title, content, read } = req.body;
 
-    const updateNote = await Note.findByIdAndUpdate(id, { title, content, read }, { returnDocument: "after" });
+    const updateNote = await Note.findByIdAndUpdate(
+        id,
+        { title, content, read },
+        { returnDocument: 'after' },
+    );
 
     if (!updateNote) {
         return res.status(404).json({
-            message: 'Note not found'
+            message: 'Note not found',
         });
     }
 
     res.status(200).json({
         message: 'Note updated successfully',
-        note: updateNote
+        note: updateNote,
     });
-};
+}
 
 export async function deleteNote(req, res) {
     const id = req.params.id;
@@ -61,11 +67,11 @@ export async function deleteNote(req, res) {
 
     if (!deletedNote) {
         return res.status(404).json({
-            message: 'Note not found'
+            message: 'Note not found',
         });
     }
 
     res.status(200).json({
-        message: 'Note deleted successfully'
+        message: 'Note deleted successfully',
     });
-};
+}

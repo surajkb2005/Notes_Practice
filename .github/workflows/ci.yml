@@ -22,7 +22,15 @@ jobs:
       # dependabilities can be correctly installed or not?
       - name: Install dependencies
         working-directory: ./Backend
-        run: npm install
+        run: npm ci
+
+      - name: Run ESLint
+        working-directory: ./Backend
+        run: npm run lint
+
+      - name: Check formatting
+        working-directory: ./Backend
+        run: npm run format:check
 
       # here we need to setup for mongodb keys and env variables, so we can use secrets for that
       # # backend server can be started without crashing or not?

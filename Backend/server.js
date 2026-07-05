@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import dotenv from 'dotenv'
+import dotenv from 'dotenv';
 import Note from './model/notes.js';
 import connectDB from './config/dbconfig.js';
 import noteRouter from './routes/noteRoutes.js';
