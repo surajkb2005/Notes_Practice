@@ -24,7 +24,8 @@ jobs:
         working-directory: ./Backend
         run: npm install
 
-      # backend server can be started without crashing or not?
-      - name: Start backend server
-        working-directory: ./Backend
-        run: timeout 25s npm start
+      # here we need to setup for mongodb keys and env variables, so we can use secrets for that
+      # # backend server can be started without crashing or not?
+      # - name: Start backend server
+      #   working-directory: ./Backend
+      #   run: timeout 25s npm start
