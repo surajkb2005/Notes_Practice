@@ -1,0 +1,5 @@
+for running docker image in backend 
+
+
+
+docker run -p 3000:5000 -e MONGODB_URI="mongodb://host.docker.internal:27017/notesdb" notes-backend
