@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const API = "http://4.193.207.83:5000/notes";
+const API = "/api/notes";
 
 function App() {
 
