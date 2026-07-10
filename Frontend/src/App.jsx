@@ -71,7 +71,8 @@ function App() {
   return (
     <div className="container">
 
-      <h1>Notes App</h1>
+      <h1>NOTES APP</h1>
+      <h2>CRUD Application with Prometheus Metrics</h2>
 
       <form onSubmit={addOrUpdateNote}>
 
