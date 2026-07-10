@@ -3,7 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import connectDB from './config/dbconfig.js';
 import noteRouter from './routes/noteRoutes.js';
-import client from "prom-client";
+import client from 'prom-client';
 
 dotenv.config();
 connectDB();
@@ -16,15 +16,15 @@ app.use(cors()); //using cors is to allow cross-origin requests
 // ---------------------------------------------------------------------------------------
 // Count total HTTP requests
 const httpRequestCounter = new client.Counter({
-    name: "http_requests_total",
-    help: "Total number of HTTP requests",
-    labelNames: ["method", "route", "status"],
+    name: 'http_requests_total',
+    help: 'Total number of HTTP requests',
+    labelNames: ['method', 'route', 'status'],
 });
 // Measure response time
 const httpRequestDuration = new client.Histogram({
-    name: "http_request_duration_seconds",
-    help: "HTTP request duration in seconds",
-    labelNames: ["method", "route", "status"],
+    name: 'http_request_duration_seconds',
+    help: 'HTTP request duration in seconds',
+    labelNames: ['method', 'route', 'status'],
 });
 // ---------------------------------------------------------------------------------------
 
@@ -35,7 +35,7 @@ app.use(express.json());
 // Metrics middleware
 app.use((req, res, next) => {
     const end = httpRequestDuration.startTimer();
-    res.on("finish", () => {
+    res.on('finish', () => {
         httpRequestCounter.inc({
             method: req.method,
             route: req.route?.path || req.path,
@@ -54,12 +54,10 @@ app.use((req, res, next) => {
 // using the noteRouter for handling routes related to notes
 app.use('/notes', noteRouter);
 
-app.get("/metrics", async (req, res) => {
-
-    res.set("Content-Type", client.register.contentType);
+app.get('/metrics', async (req, res) => {
+    res.set('Content-Type', client.register.contentType);
 
     res.end(await client.register.metrics());
-
 });
 
 app.get('/', (req, res) => {
